@@ -1,0 +1,63 @@
+<section class="panel">
+  <header class="panel__cabecera">
+    <h2>Carrito de compras</h2>
+    <button
+      type="button"
+      class="btn btn--peligro"
+      *ngIf="(carrito$ | async)?.length"
+      (click)="vaciar()"
+    >
+      Vaciar carrito
+    </button>
+  </header>
+
+  <ng-container *ngIf="carrito$ | async as items">
+    <div class="vacio" *ngIf="items.length === 0">
+      <p class="vacio__titulo">Tu carrito está vacío</p>
+      <p class="vacio__texto">Agrega productos desde el catálogo para comenzar.</p>
+    </div>
+
+    <table class="tabla" *ngIf="items.length > 0">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>
+            <span class="tabla__nombre">{{ item.producto.nombre }}</span>
+            <span class="tabla__categoria">{{ item.producto.categoria }}</span>
+          </td>
+          <td>{{ item.producto.precio | moneda }}</td>
+          <td>
+            <input
+              class="tabla__cantidad"
+              type="number"
+              min="0"
+              [value]="item.cantidad"
+              (change)="cambiarCantidad(item.producto.id, $any($event.target).value)"
+            />
+          </td>
+          <td class="tabla__subtotal">
+            {{ item.producto.precio | subtotal: item.cantidad | moneda }}
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn--icono"
+              title="Eliminar producto"
+              (click)="eliminar(item.producto.id)"
+            >
+              ✕
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</section>

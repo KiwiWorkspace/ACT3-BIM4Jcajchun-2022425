@@ -1,0 +1,29 @@
+<section class="resumen">
+  <h2>Resumen del pedido</h2>
+
+  <ng-container *ngIf="carrito$ | async as items">
+    <p class="resumen__vacio" *ngIf="items.length === 0">Agrega productos para ver el resumen.</p>
+
+    <ul class="resumen__lista" *ngIf="items.length > 0">
+      <li class="resumen__item" *ngFor="let item of items">
+        <span class="resumen__nombre">
+          {{ item.producto.nombre }} <span class="resumen__x">x{{ item.cantidad }}</span>
+        </span>
+        <span class="resumen__subtotal">
+          {{ item.producto.precio | subtotal: item.cantidad | moneda }}
+        </span>
+      </li>
+    </ul>
+
+    <div class="resumen__totales" *ngIf="items.length > 0">
+      <div class="resumen__fila">
+        <span>Unidades</span>
+        <span>{{ (cantidadTotal$ | async) ?? 0 }}</span>
+      </div>
+      <div class="resumen__fila resumen__fila--total">
+        <span>Total</span>
+        <span class="resumen__total">{{ items | totalCarrito | moneda }}</span>
+      </div>
+    </div>
+  </ng-container>
+</section>

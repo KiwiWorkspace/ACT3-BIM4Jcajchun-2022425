@@ -1,0 +1,32 @@
+<section class="panel">
+  <header class="panel__cabecera">
+    <h2>Catálogo de productos</h2>
+    <span class="panel__subtitulo">Agrega productos al carrito</span>
+  </header>
+
+  <ul class="productos">
+    <li class="producto" *ngFor="let producto of productos">
+      <div class="producto__info">
+        <span class="producto__categoria">{{ producto.categoria }}</span>
+        <h3 class="producto__nombre">{{ producto.nombre }}</h3>
+        <p class="producto__descripcion">{{ producto.descripcion }}</p>
+      </div>
+
+      <div class="producto__acciones">
+        <span class="producto__precio">{{ producto.precio | moneda }}</span>
+
+        <label class="producto__cantidad">
+          Cant.
+          <input
+            type="number"
+            min="1"
+            [value]="obtenerCantidad(producto)"
+            (change)="cambiarCantidad(producto, $any($event.target).value)"
+          />
+        </label>
+
+        <button type="button" class="btn btn--primario" (click)="agregar(producto)">Agregar</button>
+      </div>
+    </li>
+  </ul>
+</section>

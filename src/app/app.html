@@ -1,0 +1,22 @@
+<header class="encabezado">
+  <div class="encabezado__contenido">
+    <div>
+      <h1>Carrito de Ventas</h1>
+      <p class="encabezado__subtitulo">Observables + Pipes en Angular</p>
+    </div>
+    <div class="encabezado__contador">
+      🛒
+      <span>{{ (cantidadTotal$ | async) ?? 0 }}</span>
+    </div>
+  </div>
+</header>
+
+<main class="contenido">
+  <div class="contenido__catalogo">
+    <app-producto-lista />
+    <app-carrito-detalle />
+  </div>
+  <aside class="contenido__resumen">
+    <app-resumen-carrito />
+  </aside>
+</main>

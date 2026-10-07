@@ -1,0 +1,59 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    'Segoe UI',
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.btn:hover {
+  filter: brightness(0.95);
+}
+
+.btn--primario {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.btn--peligro {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.btn--icono {
+  background: transparent;
+  color: #94a3b8;
+  padding: 0.25rem 0.45rem;
+  font-size: 0.85rem;
+}
+
+.btn--icono:hover {
+  color: #dc2626;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
